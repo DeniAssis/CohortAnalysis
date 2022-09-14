@@ -1,0 +1,172 @@
+from traitlets.traitlets import Int
+from IPython.core.interactiveshell import Integer
+# import pandas as pd
+import numpy as np
+import math
+from datetime import timedelta
+
+# CREATING TABLES:
+# user_startdate : to fullfill with information and generate the diagram
+# user-ordertime : the first table according to the description
+# obs.: I created these tables with SQL to show you some skills
+# but the other table and all other code, I developed with python.
+
+import sqlite3
+
+conn = sqlite3.connect('jeff.db')
+print("Opened database successfully");
+
+conn.execute('''
+DROP TABLE IF EXISTS user_startdate;''')
+conn.commit()
+
+conn.execute('''
+DROP TABLE IF EXISTS user_ordertime;''')
+conn.commit()
+
+
+conn.execute('''
+DROP TABLE IF EXISTS user_signup;''')
+conn.commit()
+
+conn.execute('''
+CREATE TABLE IF NOT EXISTS user_startdate(
+                      qtd_user int NOT NULL, 
+                      signup_date datetime NOT NULL);''')
+
+conn.execute('''
+CREATE TABLE IF NOT EXISTS user_ordertime(
+                      user_id int NOT NULL, 
+                      order_timestamp datetime NOT NULL);''')
+
+conn.commit()
+
+print("Tables created successfully");
+
+# this table is to create data to make the simulation
+
+cursor = conn.cursor()
+cursor.execute('INSERT INTO user_startdate VALUES (15, "06.01.2022")')
+cursor.execute('INSERT INTO user_startdate VALUES (10, "06.08.2022")')
+cursor.execute('INSERT INTO user_startdate VALUES (15, "06.15.2022")')
+cursor.execute('INSERT INTO user_startdate VALUES (20, "06.22.2022")')
+cursor.execute('INSERT INTO user_startdate VALUES (30, "06.29.2022")')
+cursor.execute('INSERT INTO user_startdate VALUES (30, "07.06.2022")')
+cursor.execute('INSERT INTO user_startdate VALUES (10, "07.13.2022")')
+cursor.execute('INSERT INTO user_startdate VALUES (15, "07.20.2022")')
+cursor.execute('INSERT INTO user_startdate VALUES (20, "07.27.2022")')
+cursor.execute('INSERT INTO user_startdate VALUES (30, "08.03.2022")')
+cursor.execute('INSERT INTO user_startdate VALUES (30, "08.10.2022")')
+cursor.execute('INSERT INTO user_startdate VALUES (10, "08.17.2022")')
+
+conn.commit()
+
+# here also making connection with python and SQL
+df_startdate = pd.read_sql_query('SELECT qtd_user, signup_date FROM user_startdate', conn)
+
+cursor_insert = conn.cursor()
+
+df_usersignup = pd.DataFrame(columns = ['user_id', 'signup_timestamp'])
+loc_count = 0
+for i in range(len(df_startdate)):
+    iCount = df_startdate.loc[i, 'qtd_user']
+    dDate  = df_startdate.loc[i, 'signup_date']
+    while iCount > 0:
+        df_usersignup.loc[loc_count] = [iCount, dDate]
+        iCount = iCount - 1    
+        loc_count = loc_count + 1 
+
+conn.close()
+
+# up to this point, I worked only with python
+
+df_startdate = df_startdate.sort_values(by=['signup_date'], ignore_index=True, ascending = True)
+
+df_ordertime = pd.DataFrame(columns = ['user_id', 'order_timestamp', 'signup_timestamp', 'order_week', 'purch_week' ])
+
+# initial charge to the first table according to the description containing user_id and signup_timestamp
+
+ipos = 0
+for i in range(len(df_startdate)):
+    isignupdate = df_startdate.loc[i, 'signup_date']
+    iqtd_user = df_startdate.loc[i, 'qtd_user'] 
+    if i == 11:
+       iorder_week = 0
+    else:
+       iorder_week = i   
+    
+    df_orderweek = df_usersignup[df_usersignup['signup_timestamp'] == isignupdate]
+    fpercent = df_purchase[(df_purchase['purch_week'] == 0) & (df_purchase['order_week'] == 1)]
+    fpercent = fpercent.values[0,2]
+    
+    itot_user = math.trunc(iqtd_user * fpercent)
+     
+    while itot_user > 0:    
+          for x in range(len(df_orderweek)):
+              if itot_user == 0:
+                 break
+              df_ordertime.loc[ipos, 'user_id'] = itot_user
+              if i == 11:
+                 df_ordertime.loc[ipos, 'order_week'] = 0
+                 df_ordertime.loc[ipos, 'order_timestamp'] =  pd.to_datetime(isignupdate) 
+              else:   
+                 df_ordertime.loc[ipos, 'order_week'] = 1
+                 df_ordertime.loc[ipos, 'order_timestamp'] =  pd.to_datetime(isignupdate) + timedelta(days=(8)) 
+              
+              df_ordertime.loc[ipos, 'purch_week'] = 0
+              df_ordertime.loc[ipos, 'signup_timestamp'] = pd.to_datetime(isignupdate) 
+              
+              ipos += 1
+              itot_user -= 1
+
+ipos += 1
+ipurch_week = 11
+iorder_week = 0
+ibreak = 0
+
+df_startdate = df_startdate.sort_values(by=['signup_date'], ignore_index=True, ascending = False)
+
+# charge for the order week data
+
+for i in range(len(df_startdate)):
+    isignupdate = df_startdate.loc[i, 'signup_date']
+    iqtd_user = df_startdate.loc[i, 'qtd_user']
+    week_numbers = 11 - ipurch_week   
+    xold = 0
+    while week_numbers >= 0:     
+          fpercent = df_purchase[(df_purchase['purch_week'] == ipurch_week) & (df_purchase['order_week'] == week_numbers)]
+          fpercent = fpercent.values[0,2]
+    
+          itot_user = math.trunc(iqtd_user * fpercent)
+          
+          df_orderweek = df_usersignup[df_usersignup['signup_timestamp'] == isignupdate]
+
+          for x in (n+xold for n in range(len(df_orderweek))):
+              if itot_user == 0:
+                xold = x
+                week_numbers -= 1
+                ibreak = 1
+                break
+      
+              df_ordertime.loc[ipos, 'user_id'] = itot_user
+              df_ordertime.loc[ipos, 'order_week'] = week_numbers
+              df_ordertime.loc[ipos, 'purch_week'] = ipurch_week
+              df_ordertime.loc[ipos, 'signup_timestamp'] = pd.to_datetime(isignupdate) 
+              if ipurch_week < 11:
+                 df_ordertime.loc[ipos, 'order_timestamp'] = pd.to_datetime(isignupdate) + timedelta(days=(7*week_numbers+1))
+              else:   
+                 df_ordertime.loc[ipos, 'order_timestamp']  = pd.to_datetime(isignupdate)
+            
+              ipos += 1
+              itot_user -= 1
+    ipurch_week  -= 1  
+
+df_ordertime = df_ordertime[['purch_week','order_week', 'order_timestamp']].value_counts().sort_index()
+df_ordertime = pd.DataFrame(df_ordertime)
+df_ordertime = df_ordertime.reset_index()
+df_ordertime.columns = ['purch_week','order_week','order_timestamp', 'count']
+df_ordertime = df_ordertime[df_ordertime['count'] > 0]
+df_ordertime['percent'] = df_ordertime['count'] / df_ordertime.groupby(['order_timestamp'])['count'].transform('sum') * 100
+
+# pivot table to create the diagram
+df_heatmap = pd.pivot_table(df_ordertime, "percent", "purch_week", "order_week") 
