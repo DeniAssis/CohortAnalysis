@@ -1,0 +1,394 @@
+# Denise Assis
+# percent to fullfill the tables and generate the seaborn heatmap
+import pandas as pd
+
+df_purchase = pd.DataFrame(columns = ['purch_week', 'order_week', 'percent'])
+
+df_purchase.loc[0,'purch_week'] = 11
+df_purchase.loc[0,'order_week'] = 0
+df_purchase.loc[0,'percent'] = 0.27
+
+
+df_purchase.loc[1,'purch_week'] = 10
+df_purchase.loc[1,'order_week'] = 0
+df_purchase.loc[1,'percent'] = 0.5
+
+
+df_purchase.loc[2,'purch_week'] = 10
+df_purchase.loc[2,'order_week'] = 1
+df_purchase.loc[2,'percent'] = 0.15
+
+
+df_purchase.loc[3,'purch_week'] = 9
+df_purchase.loc[3,'order_week'] = 0
+df_purchase.loc[3,'percent'] = 0.37
+
+
+df_purchase.loc[4,'purch_week'] = 9
+df_purchase.loc[4,'order_week'] = 1
+df_purchase.loc[4,'percent'] = 0.37
+
+
+df_purchase.loc[5,'purch_week'] = 9
+df_purchase.loc[5,'order_week'] = 2
+df_purchase.loc[5,'percent'] = 0.09
+
+
+df_purchase.loc[6,'purch_week'] = 8
+df_purchase.loc[6,'order_week'] = 0
+df_purchase.loc[6,'percent'] = 0.39
+
+
+df_purchase.loc[7,'purch_week'] = 8
+df_purchase.loc[7,'order_week'] = 1
+df_purchase.loc[7,'percent'] = 0.35
+
+
+df_purchase.loc[8,'purch_week'] = 8
+df_purchase.loc[8,'order_week'] = 2
+df_purchase.loc[8,'percent'] = 0.31
+
+
+df_purchase.loc[9,'purch_week'] = 8
+df_purchase.loc[9,'order_week'] = 3
+df_purchase.loc[9,'percent'] = 0.09
+
+
+df_purchase.loc[10,'purch_week'] = 7
+df_purchase.loc[10,'order_week'] = 0
+df_purchase.loc[10,'percent'] = 0.35
+
+
+df_purchase.loc[11,'purch_week'] = 7
+df_purchase.loc[11,'order_week'] = 1
+df_purchase.loc[11,'percent'] = 0.31
+
+
+df_purchase.loc[12,'purch_week'] = 7
+df_purchase.loc[12,'order_week'] = 2
+df_purchase.loc[12,'percent'] = 0.26
+
+
+df_purchase.loc[13,'purch_week'] = 7
+df_purchase.loc[13,'order_week'] = 3
+df_purchase.loc[13,'percent'] = 0.29
+
+
+df_purchase.loc[14,'purch_week'] = 7
+df_purchase.loc[14,'order_week'] = 4
+df_purchase.loc[14,'percent'] = 0.08
+
+
+df_purchase.loc[15,'purch_week'] = 6
+df_purchase.loc[15,'order_week'] = 0
+df_purchase.loc[15,'percent'] = 0.35
+
+
+df_purchase.loc[16,'purch_week'] = 6
+df_purchase.loc[16,'order_week'] = 1
+df_purchase.loc[16,'percent'] = 0.26
+
+
+df_purchase.loc[17,'purch_week'] = 6
+df_purchase.loc[17,'order_week'] = 2
+df_purchase.loc[17,'percent'] = 0.28
+
+
+df_purchase.loc[18,'purch_week'] = 6
+df_purchase.loc[18,'order_week'] = 3
+df_purchase.loc[18,'percent'] = 0.24
+
+
+df_purchase.loc[19,'purch_week'] = 6
+df_purchase.loc[19,'order_week'] = 4
+df_purchase.loc[19,'percent'] = 0.26
+
+
+df_purchase.loc[20,'purch_week'] = 6
+df_purchase.loc[20,'order_week'] = 5
+df_purchase.loc[20,'percent'] = 0.1
+
+
+df_purchase.loc[21,'purch_week'] = 5
+df_purchase.loc[21,'order_week'] = 0
+df_purchase.loc[21,'percent'] = 0.38
+
+
+df_purchase.loc[22,'purch_week'] = 5
+df_purchase.loc[22,'order_week'] = 1
+df_purchase.loc[22,'percent'] = 0.26
+
+
+df_purchase.loc[23,'purch_week'] = 5
+df_purchase.loc[23,'order_week'] = 2
+df_purchase.loc[23,'percent'] = 0.26
+
+
+df_purchase.loc[24,'purch_week'] = 5
+df_purchase.loc[24,'order_week'] = 3
+df_purchase.loc[24,'percent'] = 0.26
+
+
+df_purchase.loc[25,'purch_week'] = 5
+df_purchase.loc[25,'order_week'] = 4
+df_purchase.loc[25,'percent'] = 0.23
+
+
+df_purchase.loc[26,'purch_week'] = 5
+df_purchase.loc[26,'order_week'] = 5
+df_purchase.loc[26,'percent'] = 0.27
+
+
+df_purchase.loc[27,'purch_week'] = 5
+df_purchase.loc[27,'order_week'] = 6
+df_purchase.loc[27,'percent'] = 0.1
+
+
+df_purchase.loc[28,'purch_week'] = 4
+df_purchase.loc[28,'order_week'] = 0
+df_purchase.loc[28,'percent'] = 0.4
+
+
+df_purchase.loc[29,'purch_week'] = 4
+df_purchase.loc[29,'order_week'] = 1
+df_purchase.loc[29,'percent'] = 0.3
+
+
+df_purchase.loc[30,'purch_week'] = 4
+df_purchase.loc[30,'order_week'] = 2
+df_purchase.loc[30,'percent'] = 0.25
+
+
+df_purchase.loc[31,'purch_week'] = 4
+df_purchase.loc[31,'order_week'] = 3
+df_purchase.loc[31,'percent'] = 0.18
+
+
+df_purchase.loc[32,'purch_week'] = 4
+df_purchase.loc[32,'order_week'] = 4
+df_purchase.loc[32,'percent'] = 0.24
+
+
+df_purchase.loc[33,'purch_week'] = 4
+df_purchase.loc[33,'order_week'] = 5
+df_purchase.loc[33,'percent'] = 0.24
+
+
+df_purchase.loc[34,'purch_week'] = 4
+df_purchase.loc[34,'order_week'] = 6
+df_purchase.loc[34,'percent'] = 0.34
+
+
+df_purchase.loc[35,'purch_week'] = 4
+df_purchase.loc[35,'order_week'] = 7
+df_purchase.loc[35,'percent'] = 0.12
+
+
+df_purchase.loc[36,'purch_week'] = 3
+df_purchase.loc[36,'order_week'] = 0
+df_purchase.loc[36,'percent'] = 0.36
+
+
+df_purchase.loc[37,'purch_week'] = 3
+df_purchase.loc[37,'order_week'] = 1
+df_purchase.loc[37,'percent'] = 0.33
+
+
+df_purchase.loc[38,'purch_week'] = 3
+df_purchase.loc[38,'order_week'] = 2
+df_purchase.loc[38,'percent'] = 0.27
+
+
+df_purchase.loc[39,'purch_week'] = 3
+df_purchase.loc[39,'order_week'] = 3
+df_purchase.loc[39,'percent'] = 0.23
+
+
+df_purchase.loc[40,'purch_week'] = 3
+df_purchase.loc[40,'order_week'] = 4
+df_purchase.loc[40,'percent'] = 0.21
+
+
+df_purchase.loc[41,'purch_week'] = 3
+df_purchase.loc[41,'order_week'] = 5
+df_purchase.loc[41,'percent'] = 0.22
+
+
+df_purchase.loc[42,'purch_week'] = 3
+df_purchase.loc[42,'order_week'] = 6
+df_purchase.loc[42,'percent'] = 0.25
+
+
+df_purchase.loc[43,'purch_week'] = 3
+df_purchase.loc[43,'order_week'] = 7
+df_purchase.loc[43,'percent'] = 0.27
+
+
+df_purchase.loc[44,'purch_week'] = 3
+df_purchase.loc[44,'order_week'] = 8
+df_purchase.loc[44,'percent'] = 0.14
+
+
+df_purchase.loc[45,'purch_week'] = 2
+df_purchase.loc[45,'order_week'] = 0
+df_purchase.loc[45,'percent'] = 0.39
+
+
+df_purchase.loc[46,'purch_week'] = 2
+df_purchase.loc[46,'order_week'] = 1
+df_purchase.loc[46,'percent'] = 0.24
+
+
+df_purchase.loc[47,'purch_week'] = 2
+df_purchase.loc[47,'order_week'] = 2
+df_purchase.loc[47,'percent'] = 0.28
+
+
+df_purchase.loc[48,'purch_week'] = 2
+df_purchase.loc[48,'order_week'] = 3
+df_purchase.loc[48,'percent'] = 0.22
+
+
+df_purchase.loc[49,'purch_week'] = 2
+df_purchase.loc[49,'order_week'] = 4
+df_purchase.loc[49,'percent'] = 0.21
+
+
+df_purchase.loc[50,'purch_week'] = 2
+df_purchase.loc[50,'order_week'] = 5
+df_purchase.loc[50,'percent'] = 0.17
+
+
+df_purchase.loc[51,'purch_week'] = 2
+df_purchase.loc[51,'order_week'] = 6
+df_purchase.loc[51,'percent'] = 0.27
+
+
+df_purchase.loc[52,'purch_week'] = 2
+df_purchase.loc[52,'order_week'] = 7
+df_purchase.loc[52,'percent'] = 0.23
+
+
+df_purchase.loc[53,'purch_week'] = 2
+df_purchase.loc[53,'order_week'] = 8
+df_purchase.loc[53,'percent'] = 0.25
+
+
+df_purchase.loc[54,'purch_week'] = 2
+df_purchase.loc[54,'order_week'] = 9
+df_purchase.loc[54,'percent'] = 0.12
+
+
+df_purchase.loc[55,'purch_week'] = 1
+df_purchase.loc[55,'order_week'] = 0
+df_purchase.loc[55,'percent'] = 0.33
+
+
+df_purchase.loc[56,'purch_week'] = 1
+df_purchase.loc[56,'order_week'] = 1
+df_purchase.loc[56,'percent'] = 0.28
+
+
+df_purchase.loc[57,'purch_week'] = 1
+df_purchase.loc[57,'order_week'] = 2
+df_purchase.loc[57,'percent'] = 0.19
+
+
+df_purchase.loc[58,'purch_week'] = 1
+df_purchase.loc[58,'order_week'] = 3
+df_purchase.loc[58,'percent'] = 0.25
+
+
+df_purchase.loc[59,'purch_week'] = 1
+df_purchase.loc[59,'order_week'] = 4
+df_purchase.loc[59,'percent'] = 0.22
+
+
+df_purchase.loc[60,'purch_week'] = 1
+df_purchase.loc[60,'order_week'] = 5
+df_purchase.loc[60,'percent'] = 0.17
+
+
+df_purchase.loc[61,'purch_week'] = 1
+df_purchase.loc[61,'order_week'] = 6
+df_purchase.loc[61,'percent'] = 0.19
+
+
+df_purchase.loc[62,'purch_week'] = 1
+df_purchase.loc[62,'order_week'] = 7
+df_purchase.loc[62,'percent'] = 0.20
+
+
+df_purchase.loc[63,'purch_week'] = 1
+df_purchase.loc[63,'order_week'] = 8
+df_purchase.loc[63,'percent'] = 0.25
+
+
+df_purchase.loc[64,'purch_week'] = 1
+df_purchase.loc[64,'order_week'] = 9
+df_purchase.loc[64,'percent'] = 0.33
+
+
+df_purchase.loc[65,'purch_week'] = 1
+df_purchase.loc[65,'order_week'] = 10
+df_purchase.loc[65,'percent'] = 0.13
+
+
+df_purchase.loc[66,'purch_week'] = 0
+df_purchase.loc[66,'order_week'] = 0
+df_purchase.loc[66,'percent'] = 0.38
+
+
+df_purchase.loc[67,'purch_week'] = 0
+df_purchase.loc[67,'order_week'] = 1
+df_purchase.loc[67,'percent'] = 0.24
+
+
+df_purchase.loc[68,'purch_week'] = 0
+df_purchase.loc[68,'order_week'] = 2
+df_purchase.loc[68,'percent'] = 0.25
+
+
+df_purchase.loc[69,'purch_week'] = 0
+df_purchase.loc[69,'order_week'] = 3
+df_purchase.loc[69,'percent'] = 0.19
+
+
+df_purchase.loc[70,'purch_week'] = 0
+df_purchase.loc[70,'order_week'] = 4
+df_purchase.loc[70,'percent'] = 0.23
+
+
+df_purchase.loc[71,'purch_week'] = 0
+df_purchase.loc[71,'order_week'] = 5
+df_purchase.loc[71,'percent'] = 0.24
+
+
+df_purchase.loc[72,'purch_week'] = 0
+df_purchase.loc[72,'order_week'] = 6
+df_purchase.loc[72,'percent'] = 0.21
+
+
+df_purchase.loc[73,'purch_week'] = 0
+df_purchase.loc[73,'order_week'] = 7
+df_purchase.loc[73,'percent'] = 0.21
+
+
+df_purchase.loc[74,'purch_week'] = 0
+df_purchase.loc[74,'order_week'] = 8
+df_purchase.loc[74,'percent'] = 0.25
+
+
+df_purchase.loc[75,'purch_week'] = 0
+df_purchase.loc[75,'order_week'] = 9
+df_purchase.loc[75,'percent'] = 0.3
+
+
+df_purchase.loc[76,'purch_week'] = 0
+df_purchase.loc[76,'order_week'] = 10
+df_purchase.loc[76,'percent'] = 0.26
+
+
+df_purchase.loc[77,'purch_week'] = 0
+df_purchase.loc[77,'order_week'] = 11
+df_purchase.loc[77,'percent'] = 0.13
